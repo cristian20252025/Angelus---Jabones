@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angelus - Jabones Artesanales</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <header>
+    <div class="header-logo-container">
+      <img id="imagen" src="img/logo jabones artesanales.jpeg" alt="Logo Angelus Jabones Artesanales" />
+    </div>
+
+    <div class="header-controls">
+      <input id="search" type="text" placeholder="Buscar jabones..." />
+      <select id="filter-category">
+        <option value="">Todas las variedades</option>
+      </select>
+      <select id="sort">
+        <option value="">Ordenar por precio...</option>
+        <option value="price-asc">Precio: Menor a Mayor ↑</option>
+        <option value="price-desc">Precio: Mayor a Menor ↓</option>
+      </select>
+      <button id="cart-btn">🛒 Carrito (<span id="cart-count">0</span>)</button>
+      <button id="historial">📜 Historial</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contenedor del Historial (Oculto por defecto) -->
+    <section id="historial-container" class="hidden">
+      <h2>Historial de Compras Simuladas</h2>
+      <div id="historial-lista">No has realizado ninguna compra todavía.</div>
+    </section>
+
+    <!-- Listado de Productos -->
+    <section id="product-list" class="grid"></section>
+
+    <!-- Carrito Lateral -->
+    <aside id="cart" class="hidden">
+      <h2>Tu Carrito</h2>
+      <ul id="cart-items"></ul>
+      <div class="cart-total-container">Total: $<span id="cart-total">0</span></div>
+      <button id="buy-now-cart">💳 Finalizar Compra</button>
+      <button id="close-cart">Seguir Comprando</button>
+    </aside>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

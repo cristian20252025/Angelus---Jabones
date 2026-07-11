@@ -1,0 +1,302 @@
+/* GENERAL */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* El tono exacto del fondo de tu logo en degradado */
+  background: radial-gradient(circle, #fbf2db 0%, #f7d1a2 70%, #f3be82 100%);
+  background-attachment: fixed; /* Mantiene el fondo estático al hacer scroll */
+  min-height: 100vh;
+  color: #533f2d; /* Marrón oscuro extraído de las letras del logo */
+}
+
+/* HEADER */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  gap: 20px;
+  /* Totalmente transparente para que el fondo del logo y de la web se unan */
+  background: transparent;
+  border-radius: 0;
+  margin-bottom: 30px;
+}
+
+.header-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+#imagen {
+  width: 100%;
+  max-width: 550px; /* Un poco más amplio para que se luzca el diseño */
+  height: auto;
+  border-radius: 0; /* Quitamos bordes redondeados para evitar cortes visuales */
+  object-fit: contain;
+  /* Quitamos sombras para eliminar el efecto de "recuadro" flotante */
+  box-shadow: none; 
+}
+
+/* Ocultamos el título de texto si tu logo ya dice "Angelus Jabones Artesanales" */
+#titulo {
+  display: none; 
+}
+
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 10px;
+}
+
+/* CONTROLES Y BUSCADOR (Integrados con la paleta cálida) */
+#search,
+#filter-category,
+#sort,
+#cart-btn,
+#historial {
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  border-radius: 25px;
+  border: 1px solid #e1b483;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 10px rgba(83, 63, 45, 0.05);
+  transition: all 0.3s ease;
+  min-width: 180px;
+  font-weight: 500;
+  color: #533f2d;
+}
+
+#search {
+  flex: 1 1 250px;
+}
+
+#search:focus,
+#filter-category:focus,
+#sort:focus {
+  outline: none;
+  border-color: #ba8145;
+  box-shadow: 0 0 10px rgba(186, 129, 69, 0.2);
+}
+
+/* BOTONES DE ACCIÓN PRINCIPAL */
+#cart-btn {
+  background: linear-gradient(135deg, #7ba592, #5a826f); /* Toque botánico herbal */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#historial {
+  background: linear-gradient(135deg, #ba8145, #8a5a2b); /* Tono canela/marrón del logo */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#cart-btn:hover, #historial:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(83, 63, 45, 0.2);
+}
+
+/* MAIN CONTAINER */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 40px 20px;
+}
+
+/* HISTORIAL CONTAINER */
+#historial-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+  border-left: 5px solid #a0826b;
+}
+#historial-container h2 {
+  margin-top: 0;
+  color: #5c4634;
+}
+.ticket-compra {
+  background: #faf6f0;
+  border: 1px dashed #d3c4b9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+/* PRODUCT GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(140, 109, 83, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(140, 109, 83, 0.12);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.card img {
+  max-width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  background-color: #fcfbf9;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3e312b;
+  margin: 10px 0 5px 0;
+}
+
+.card p {
+  color: #6e5e58;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+/* PRECIOS Y ETIQUETAS */
+.card .price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #5a826f; /* Combinado con el color del carrito */
+  margin-bottom: 15px;
+}
+
+.card button {
+  background: linear-gradient(135deg, #c0a48c, #a0826b);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.card button:hover {
+  box-shadow: 0 4px 12px rgba(160, 130, 107, 0.3);
+  filter: brightness(1.05);
+}
+
+/* HIDDEN */
+.hidden {
+  display: none !important;
+}
+
+/* CART ASIDE (Carrito Lateral) */
+aside#cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100%;
+  background: #fbf9f6;
+  padding: 30px;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #eaddd3;
+}
+
+aside#cart h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #3e312b;
+  text-align: center;
+  border-bottom: 2px solid #eaddd3;
+  padding-bottom: 15px;
+}
+
+#cart-items li {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #eaddd3;
+}
+
+.cart-total-container {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #3e312b;
+  text-align: right;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #eaddd3;
+}
+
+#buy-now-cart {
+  background: linear-gradient(135deg, #5a826f, #466657);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+
+#close-cart {
+  background: #eaddd3;
+  color: #5c4634;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+#buy-now-cart:hover { filter: brightness(1.1); }
+#close-cart:hover { background: #dfd0c4; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header { padding: 15px; }
+  .header-controls { flex-direction: column; width: 100%; }
+  #search, #filter-category, #sort, #cart-btn, #historial { width: 100%; }
+  aside#cart { width: 100%; }
+}
