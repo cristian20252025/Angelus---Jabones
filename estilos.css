@@ -300,3 +300,94 @@ aside#cart h2 {
   #search, #filter-category, #sort, #cart-btn, #historial { width: 100%; }
   aside#cart { width: 100%; }
 }
+
+/* ==========================================================================
+   VENTANA MODAL DE IMÁGENES (LIGHTBOX)
+   ========================================================================== */
+.modal {
+  position: fixed;
+  z-index: 2000; /* Asegura que flote por encima del carrito lateral */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(40, 31, 23, 0.9); /* Fondo cálido traslúcido */
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+/* Contenedor de la Imagen */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 85%;
+  max-height: 75vh;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  animation-name: zoomIn;
+  animation-duration: 0.3s;
+}
+
+/* Efecto de aumento suave de entrada */
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Botón de Cerrar (X) */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fbf2db;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #ba8145;
+  transform: scale(1.1);
+}
+
+/* Texto de descripción de la imagen */
+#modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #fbf2db;
+  padding: 15px 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ajustes para Dispositivos Móviles */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95%;
+    max-height: 65vh;
+  }
+  .modal-close {
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+  }
+}

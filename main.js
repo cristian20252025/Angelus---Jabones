@@ -5,42 +5,42 @@ const productosJabones = [
     title: "Racimo de Uvas",
     price: 25000,
     category: "Chocolate",
-    image: "img/Racimo de Uvas (Chocolate).jpeg"
+    image: "img/racimo de uvas (chocolate) (2).jpeg"
   },
   {
     id: 2,
-    title: "Jabon (Corazon)",
-    price: 5000,
-    category: "Calendula",
-    image: "img/jabon de calendula (Corazon).jpeg"
+    title: "Racimo de Uvas",
+    price: 25000,
+    category: "citrico",
+    image: "img/racimo de uvas (citrico).jpeg"
   },
   {
     id: 3,
     title: "Jabón (Flor Margarita)",
     price: 12000,
     category: "Calendula",
-    image: "img/jabon de calendula (Flor Margarita).jpeg"
+    image: "img/Jabon de calendula(flor margarita).jpeg"
   },
   {
     id: 4,
-    title: "Jabón ( Mariposa)",
+    title: "Jabón (Mariposa)",
     price: 8000,
     category: "Calendula",
-    image: "img/jabon de calendula (Mariposa).jpeg"
+    image: "img/Jabon de calendula (mariposa).jpeg"
   },
   {
     id: 5,
     title: "Jabón (Rosa)",
-    price: 8000,
+    price: 9000,
     category: "Calendula",
-    image: "img/jabon de calendula (Rosa).jpeg"
+    image: "img/Jabon de calendula(flor).jpeg"
   },
   {
     id: 6,
     title: "Jabon (Hawayana)",
     price: 9000,
     category: "Arroz",
-    image: "img/jabon de arroz ( Hawayana).jpeg"
+    image: "img/Jabon de arroz (hawayana).jpeg"
   },
   {
     id: 7,
@@ -54,7 +54,7 @@ const productosJabones = [
     title: "Jabón (Flor Margarita)",
     price: 12000,
     category: "Arroz",
-    image: "img/jabon de arroz (Flor Margarita).jpeg"
+    image: "img/Jabon de arroz (flor magarita).jpeg"
   },
   {
     id: 9,
@@ -102,15 +102,15 @@ const productosJabones = [
     id: 15,
     title: "Jabón (Dona Doble Flor)",
     price: 12000,
-    category: "Curcuma",
-    image: "img/jabon de curcuma (Doble Flor).jpeg"
+    category: "leche",
+    image: "img/Jabon de leche (dona).jpeg"
   },
   {
     id: 16,
     title: "Jabón (Flor Margarita)",
     price: 12000,
     category: "Curcuma",
-    image: "img/jabon de curcuma (Flor Margarita).jpeg"
+    image: "img/Jabon de curcuma(flor margarita).jpeg"
   },
   {
     id: 17,
@@ -138,14 +138,14 @@ const productosJabones = [
     title: "Jabón (Rosa)",
     price: 9000,
     category: "Curcuma",
-    image: "img/jabon de curcuma (Rosa).jpeg"
+    image: "img/Jabon de curcuma (rosa).jpeg"
   },
   {
     id: 21,
     title: "Jabón (Racimo de Uvas)",
     price: 25000,
     category: "Racimo de Uvas",
-    image: "img/Jabon Racimos de Uvas.jpeg"
+    image: "img/racimo de uvas (frutos rojos).jpeg"
   },
   {
     id: 22,
@@ -157,7 +157,7 @@ const productosJabones = [
   {
     id: 23,
     title: "Jabon de savila (Masajeador)",
-    price: 12000,
+    price: 13000,
     category: "Citricos",
     image: "img/Jabon (Masajeador).jpeg"
   },
@@ -192,14 +192,14 @@ const productosJabones = [
   {
     id: 28,
     title: "Jabón de Miel (Colmena)",
-    price: 10000,
+    price: 12000,
     category: "Miel",
     image: "img/Jabon de Miel (Colmena).jpeg"
   },
   {
     id: 29,
     title: "Jabón de Miel y Avena (Colmena)",
-    price: 10000,
+    price: 12000,
     category: "Miel y Avena",
     image: "img/Jabon de Miel y Avena (Colmena).jpeg"
   }
@@ -307,6 +307,7 @@ function removeFromCart(id) {
   updateCartUI();
 }
 
+// Función para renderizar los productos en la cuadrícula
 function renderProducts(list) {
   const container = $('product-list');
   container.innerHTML = '';
@@ -317,12 +318,14 @@ function renderProducts(list) {
   }
 
   list.forEach(p => {
+    // Si el producto no tiene descripción definida en el objeto, usamos un texto por defecto
+    const desc = p.description || "Jabón artesanal elaborado con ingredientes 100% naturales para el cuidado de tu piel.";
     const div = document.createElement('div');
     div.className = 'card';
     div.innerHTML = `
-      <img src="${p.image}" alt="${p.title}" />
+      <img src="${p.image}" alt="${p.title}" style="cursor: zoom-in;" onclick="openImageModal('${p.image}', '${p.title}')" />
       <h3>${p.title}</h3>
-      <p>${p.description}</p>
+      <p>${desc}</p>
       <p><small style="background:#eedeb0; padding:4px 10px; border-radius:10px; color:#554315; font-weight:600;">${p.category}</small></p>
       <div class="price">${formatCOP(p.price)}</div>
       <button onclick="addToCart(${p.id})">🛒 Agregar al Carrito</button>
@@ -354,10 +357,10 @@ function applyFilters() {
   const sort = $('sort').value;
 
   if (search) {
-    list = list.filter(p =>
-      p.title.toLowerCase().includes(search) ||
-      p.description.toLowerCase().includes(search)
-    );
+    list = list.filter(p => {
+      const desc = p.description || "Jabón artesanal elaborado con ingredientes 100% naturales para el cuidado de tu piel.";
+      return p.title.toLowerCase().includes(search) || desc.toLowerCase().includes(search);
+    });
   }
 
   if (cat) {
@@ -413,13 +416,49 @@ function setupBuyNow() {
     saveHistorial();
     renderHistorialUI();
 
-    alert(`¡Gracias por tu compra en Angelus!\nTotal: ${totalFormatted}\ Tu pedido ha sido registrado con éxito.`);
+    alert(`¡Gracias por tu compra en Angelus!\nTotal: ${totalFormatted}\nTu pedido ha sido registrado con éxito.`);
 
     // Limpiar carrito
     cart = {};
     saveCart();
     updateCartUI();
     $('cart').classList.add('hidden');
+  });
+}
+
+// Función para abrir la imagen ampliada en el Modal
+function openImageModal(imgSrc, title) {
+  const modal = $('image-modal');
+  const modalImg = $('modal-img');
+  const captionText = $('modal-caption');
+
+  modal.classList.remove('hidden');
+  modalImg.src = imgSrc;
+  captionText.innerHTML = title;
+}
+
+// Configurar los cierres del Modal
+function setupModalEvents() {
+  const modal = $('image-modal');
+  const closeBtn = $('close-modal');
+
+  // Cerrar al hacer clic en el botón (X)
+  closeBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  // Cerrar al hacer clic en cualquier parte oscura del fondo (fuera de la imagen)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.add('hidden');
+    }
+  });
+
+  // Cerrar presionando la tecla Escape (ESC) para mayor usabilidad
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      modal.classList.add('hidden');
+    }
   });
 }
 
@@ -431,11 +470,13 @@ function init() {
   renderProducts(products);
   setupFilters();
   setupBuyNow();
+  setupModalEvents(); // Inicializa los controladores del lightbox
 }
 
 // Vinculación global para los onclick inline del HTML dinámico
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 window.changeQty = changeQty;
+window.openImageModal = openImageModal; // Vinculación para abrir el modal
 
 init();

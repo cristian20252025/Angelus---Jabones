@@ -28,16 +28,13 @@
   </header>
 
   <main>
-    <!-- Contenedor del Historial (Oculto por defecto) -->
     <section id="historial-container" class="hidden">
-      <h2>Historial de Compras Simuladas</h2>
+      <h2>Historial de Compras</h2>
       <div id="historial-lista">No has realizado ninguna compra todavía.</div>
     </section>
 
-    <!-- Listado de Productos -->
     <section id="product-list" class="grid"></section>
 
-    <!-- Carrito Lateral -->
     <aside id="cart" class="hidden">
       <h2>Tu Carrito</h2>
       <ul id="cart-items"></ul>
@@ -46,6 +43,12 @@
       <button id="close-cart">Seguir Comprando</button>
     </aside>
   </main>
+
+  <div id="image-modal" class="modal hidden">
+    <span id="close-modal" class="modal-close">&times;</span>
+    <img id="modal-img" class="modal-content" src="" alt="Imagen ampliada" />
+    <div id="modal-caption"></div>
+  </div>
 
   <script src="main.js"></script>
 </body>
